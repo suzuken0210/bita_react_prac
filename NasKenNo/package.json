@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "list": "eslint src",
+    "test": "vitest run"
   },
   "dependencies": {
     "firebase": "^11.6.0",
