@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    es6: true,
+    es2021: true,
     node: true,
   },
   extends: [
@@ -27,6 +27,8 @@ module.exports = {
     "import",
   ],
   rules: {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     "react/react-in-jsx-scope": "off",
     "quotes": ["error", "double"],
     "import/no-unresolved": 0,
