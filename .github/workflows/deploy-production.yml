@@ -21,8 +21,9 @@ jobs:
         #   npm install
         #   npm run lint
         #   npm test
-      - run: npm run build
+      - run: |
            cd NasKenNo
+           npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
