@@ -17,6 +17,7 @@ jobs:
           node-version: 16
       - name: lint and test
         run: |
+          cd NasKenNo
           npm install
           npm run lint
           npm test
