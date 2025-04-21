@@ -22,10 +22,12 @@ module.exports = {
     "/generated/**/*", // Ignore generated files.
   ],
   plugins: [
+    "react",
     "@typescript-eslint",
     "import",
   ],
   rules: {
+    "react/react-in-jsx-scope": "off",
     "quotes": ["error", "double"],
     "import/no-unresolved": 0,
     "indent": ["error", 2],
