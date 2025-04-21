@@ -19,6 +19,8 @@ jobs:
         run: |
           cd NasKenNo
           npm install
+          nvm install 18
+          nvm use 18
           # npm run lint
           npm test
       - run: npm run build
