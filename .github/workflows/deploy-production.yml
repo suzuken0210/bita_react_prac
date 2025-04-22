@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - test
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -14,19 +15,20 @@ jobs:
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
       - name: lint and test
         run: |
-           cd NasKenNo
-        #   npm install
-        #   npm run lint
-        #   npm test
+          cd NasKenNo
+          npm install
+          #npm run lint
+          #npm test
       - run: |
-           cd NasKenNo
-           npm run build
+          cd NasKenNo
+          npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NASKENNO_355FA }}
           channelId: live
           projectId: naskenno-355fa
+          entryPoint: NasKenNo
