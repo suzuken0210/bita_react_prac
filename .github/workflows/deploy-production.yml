@@ -31,3 +31,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NASKENNO_355FA }}
           channelId: live
           projectId: naskenno-355fa
+          entryPoint: NasKenNo
