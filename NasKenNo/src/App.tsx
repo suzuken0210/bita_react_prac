@@ -3,9 +3,33 @@ import { useState } from 'react'
 // import viteLogo from '/vite.svg'
 import './App.css'
 // import React from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './firebaseConfig.ts';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [inputText, setInputText] = useState('');
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(event.target.value);
+  };
+
+  const handleSend = async () => {
+    if (inputText.trim() !== '') {
+      try {
+        const docRef = await addDoc(collection(db, 'messages'), {
+          text: inputText,
+          timestamp: new Date(),
+        });
+        console.log('Document written with ID: ', docRef.id);
+        setInputText('');
+      } catch (error) {
+        console.error('Error adding document: ', error);
+      }
+    } else {
+      alert('テキストを入力してください');
+    }
+  };
 
   return (
     <>
@@ -26,6 +50,10 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <div>
+          <input type="text" value={inputText} onChange={handleInputChange} />
+          <button onClick={handleSend}>送信</button>
+        </div>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
