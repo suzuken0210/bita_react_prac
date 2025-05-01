@@ -34,7 +34,7 @@ class AuthService {
       const userDoc = await getDoc(doc(db, "users", user.uid));
       const username = userDoc.exists() ? userDoc.data()?.username : "ゲスト";
 
-      return { user, username };
+      return username ;
     } catch (error) {
       console.error("ログイン失敗:", error);
       throw error;

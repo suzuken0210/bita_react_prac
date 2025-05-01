@@ -41,7 +41,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setUsername }) => {
   const handleLogin = async () => {
     try 
     {
-      const { username } = await AuthService.login(email, password);
+      const username  = await AuthService.login(email, password);
       setUsername(username);
       alert("ログイン成功");
     } 
