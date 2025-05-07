@@ -67,7 +67,7 @@ function App() {
       </div>
       <LoginForm setUsername={setUsername}/>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        ログイン時はユーザー名不要でログイン可能
       </p>
     </>
   )
