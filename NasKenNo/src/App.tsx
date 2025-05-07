@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
-import LoginForm from "./LoginForm";
+import LoginForm from "./auth/LoginForm";
+import LogoutForm from './auth/LogoutForm'; 
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +16,12 @@ function App() {
       appRef.current.classList.add("fade-in"); // アニメーションを適用
     }
   }, []);
+
+  // ログアウト後の処理（例: ユーザー情報をクリアする）
+  const handleLogout = () => {
+    setUsername("");
+    console.log("ユーザー情報をクリアしました");
+  };
 
   return (
     <>
@@ -66,6 +73,9 @@ function App() {
         </p>
       </div>
       <LoginForm setUsername={setUsername}/>
+      <LogoutForm onLogout={handleLogout}/>
+
+
       <p className="read-the-docs">
         ログイン時はユーザー名不要でログイン可能
       </p>

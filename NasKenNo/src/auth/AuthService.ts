@@ -1,15 +1,18 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "./firebaseConfig";
 
 class AuthService {
-  static async register(email: string, password: string, username: string) {
-    try {
+  static async register(email: string, password: string, username: string) 
+  {
+    try 
+    {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       // Firestoreにユーザー情報を保存
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "users", user.uid), 
+      {
         email,
         username,
       });
@@ -37,6 +40,27 @@ class AuthService {
       return username ;
     } catch (error) {
       console.error("ログイン失敗:", error);
+      throw error;
+    }
+  }
+
+  // 既にログアウト済みの場合は false を返し、実際にログアウト処理を実行した場合は true を返す
+  static async logout(): Promise<boolean> 
+  {
+    if (!auth.currentUser) 
+    {
+      console.warn("ユーザーはすでにログアウト状態です");
+      return false;
+    }
+    try 
+    {
+      await signOut(auth);
+      console.log("ログアウト成功");
+      return true;
+    } 
+    catch (error) 
+    {
+      console.error("ログアウト失敗:", error);
       throw error;
     }
   }
